@@ -218,7 +218,7 @@ CREATE TABLE `book_index` (
   `index_num` int(11) NOT NULL COMMENT '目录号',
   `index_name` varchar(100) DEFAULT NULL COMMENT '目录名',
   `word_count` int(11) DEFAULT NULL COMMENT '字数',
-  `is_vip` tinyint(4) DEFAULT '0' COMMENT '是否收费，1：收费，0：免费',
+  `is_vip` tinyint(4) DEFAULT '0' COMMENT '是否收费，1：收费，0：免费 ，2：微信公众号先发章节',
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),

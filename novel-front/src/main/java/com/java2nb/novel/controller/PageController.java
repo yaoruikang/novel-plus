@@ -137,25 +137,30 @@ public class PageController extends BaseController{
         //查询下一章目录ID
         Long nextBookIndexId = bookService.queryNextBookIndexId(bookId,bookIndex.getIndexNum());
         model.addAttribute("nextBookIndexId",nextBookIndexId);
+        //判断该目录是否收费
+        if (bookIndex.getIsVip() != null) {
+            if (bookIndex.getIsVip() == 1) {
+                UserDetails user = getUserDetails(request);
+                if(user == null){
+                    //未登录
+                    return "redirect:/user/login.html?originUrl="+request.getRequestURI();
+                }
+                //收费，判断用户是否购买过该目录
+                boolean isBuy = userService.queryIsBuyBookIndex(user.getId(),bookIndexId);
+                if(!isBuy){
+                    //没有购买过，需要购买
+                    model.addAttribute("needBuy",true);
+                    return "book/book_content";
+                }
+            }else{
+                model.addAttribute("needBuy",true);
+                model.addAttribute("bookIndexQrCodePicUrl", bookIndex.getQrCodePicUrl());
+                return "book/book_content_pic";
+            }
+        }
         //查询内容
         BookContent bookContent = bookService.queryBookContent(bookIndex.getId());
         model.addAttribute("bookContent",bookContent);
-        //判断该目录是否收费
-        if(bookIndex.getIsVip()!=null && bookIndex.getIsVip() == 1 ){
-            UserDetails user = getUserDetails(request);
-            if(user == null){
-                //未登录
-                return "redirect:/user/login.html?originUrl="+request.getRequestURI();
-            }
-            //收费，判断用户是否购买过该目录
-            boolean isBuy = userService.queryIsBuyBookIndex(user.getId(),bookIndexId);
-            if(!isBuy){
-                //没有购买过，需要购买
-                bookContent.setContent(null);
-                model.addAttribute("needBuy",true);
-                return "book/book_content";
-            }
-        }
         model.addAttribute("needBuy",false);
         return ThreadLocalUtil.getTemplateDir()+"book/book_content";
     }

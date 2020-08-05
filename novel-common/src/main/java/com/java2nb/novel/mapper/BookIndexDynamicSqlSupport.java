@@ -29,6 +29,9 @@ public final class BookIndexDynamicSqlSupport {
     public static final SqlColumn<Byte> isVip = bookIndex.isVip;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    public static final SqlColumn<String> qrCodePicUrl = bookIndex.qrCodePicUrl;
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
     public static final SqlColumn<Date> createTime = bookIndex.createTime;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
@@ -47,6 +50,8 @@ public final class BookIndexDynamicSqlSupport {
         public final SqlColumn<Integer> wordCount = column("word_count", JDBCType.INTEGER);
 
         public final SqlColumn<Byte> isVip = column("is_vip", JDBCType.TINYINT);
+
+        public final SqlColumn<String> qrCodePicUrl = column("qr_code_pic_url", JDBCType.VARCHAR);
 
         public final SqlColumn<Date> createTime = column("create_time", JDBCType.TIMESTAMP);
 

@@ -1,5 +1,5 @@
 java2nb:
-  uploadPath: /var/java2nb/uploaded_files/
+  uploadPath: /usr/local/java/java2nb/uploaded_files
   username: admin
   password: kangting2020
 logging:

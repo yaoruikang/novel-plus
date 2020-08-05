@@ -125,7 +125,7 @@ $(document).ready(function(){
 		rules:{
 			pwdOld:{
 				required:true,
-				minlength:6
+				minlength:0
 			},
             pwdNew:{
 			   required:true,
@@ -143,7 +143,7 @@ $(document).ready(function(){
 		messages:{
 			 	pwdOld : {
 					 required:'必填',
-					 minlength:$.validator.format('密码长度要大于6')
+					 minlength:$.validator.format('密码长度要大于0')
 				},
             	pwdNew:{
 				   required:'必填',

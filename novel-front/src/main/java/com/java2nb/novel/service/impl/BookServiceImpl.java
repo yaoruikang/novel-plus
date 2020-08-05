@@ -252,7 +252,11 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookIndex queryBookIndex(Long bookIndexId) {
-        SelectStatementProvider selectStatement = select(BookIndexDynamicSqlSupport.id, BookIndexDynamicSqlSupport.bookId, BookIndexDynamicSqlSupport.indexNum, BookIndexDynamicSqlSupport.indexName, BookIndexDynamicSqlSupport.wordCount, BookIndexDynamicSqlSupport.updateTime, BookIndexDynamicSqlSupport.isVip)
+        SelectStatementProvider selectStatement =
+            select(BookIndexDynamicSqlSupport.id, BookIndexDynamicSqlSupport.bookId,
+                BookIndexDynamicSqlSupport.indexNum, BookIndexDynamicSqlSupport.indexName,
+                BookIndexDynamicSqlSupport.wordCount, BookIndexDynamicSqlSupport.updateTime,
+                BookIndexDynamicSqlSupport.isVip, BookIndexDynamicSqlSupport.qrCodePicUrl)
                 .from(bookIndex)
                 .where(BookIndexDynamicSqlSupport.id, isEqualTo(bookIndexId))
                 .build()
